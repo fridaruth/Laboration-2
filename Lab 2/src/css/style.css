@@ -114,13 +114,13 @@ button#add-btn:hover {
 }
 
 .priority-1 {
-    border-left-color: #7520d1;
+    border-left-color: #d92a2a;
 }
 .priority-2 {
-    border-left-color: #8462c9;
+    border-left-color: #c76121;
 }
 .priority-3 {
-    border-left-color: #BBAAE4;
+    border-left-color: #fce239;
 }
 
 .todo-item.completed {
