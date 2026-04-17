@@ -14,12 +14,12 @@ body {
 
 header {
     margin-bottom: 2rem;
-    text-transform: uppercase;
-}
+    }
 
 h1, h2 {
     text-align: center;
     font-weight: 400;
+    text-transform: uppercase;
 }
 
 .form-section {
