@@ -1,13 +1,51 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>lab-2</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<html lang="sv">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Att göra-lista</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Att göra-lista</h1>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <form id="todo-form">
+        <div class="input">
+          <label for="task">Vad behöver göras?</label>
+          <input type="text" id="task" placeholder="T.ex. Diska, Köp tvättmedel" name="task" required>
+        </div>
+
+        <div class="input">
+          <label for="priority">Prioritet</label>
+          <select id="priority">
+            <option value="1">1 (Högst)</option>
+            <option value="2">2</option>
+            <option value="3">3 (Lägst)</option>
+          </select>
+        </div>
+
+        <button type="submit" id="add-btn">Lägg till</button>
+      </form>
+      <p id="error-message" class="error-text" style="display: none;"></p>
+    </section>
+
+    <section class="list-section">
+      <h2>Att göra:</h2>
+      <div id="todo-list">
+        <p class="empty-message">Listan är tom... än så länge!</p>
+        <!-- Lista med uppgifter kommer att läggas till här -->
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+
 </html>
