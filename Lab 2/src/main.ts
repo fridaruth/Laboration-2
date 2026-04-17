@@ -1,4 +1,5 @@
 import { TodoList } from "./models/TodoList";
+import './css/style.css';
 
 const myTodoList = new TodoList();
 
@@ -27,7 +28,6 @@ form.addEventListener("submit", (e) => {
 function renderTodos() {
   const listContainer = document.getElementById("todo-list")!;
   const todos = myTodoList.getTodos();
-
   listContainer.innerHTML = "";
 
   if (todos.length === 0) {
@@ -38,23 +38,25 @@ function renderTodos() {
   // loopa igenom todos till HTML
   todos.forEach((todo, index) => {
     const todoArticle = document.createElement("article");
-
-    // lägg till klasser för styling
-    todoArticle.className = "todo-item";
+    todoArticle.className = `todo-item priority-${todo.priority}`;
     if (todo.completed) {
       todoArticle.classList.add("completed");
     }
 
     // skapa innehåll
     todoArticle.innerHTML = `
-    <div class="todo-list">
+    <div class="todo-info">
     <span class="priority-label">Prio: ${todo.priority}</span>
     <h3>${todo.task}</h3>
     </div>
     `;
 
+    // skapa behållare för knappar
+    const buttonGroup = document.createElement("div");
+    buttonGroup.className = "button-group";
+
     // skapa klar-knapp
-    if(!todo.completed) {
+    if (!todo.completed) {
       const doneBtn = document.createElement("button");
       doneBtn.innerText = "Färdig";
       doneBtn.className = "done-btn";
@@ -64,16 +66,31 @@ function renderTodos() {
         renderTodos();
       });
 
-      todoArticle.appendChild(doneBtn);
+      buttonGroup.appendChild(doneBtn);
     } else {
       const status = document.createElement("span");
       status.innerText = "✅";
       status.className = "status-check";
-      todoArticle.appendChild(status);
+      buttonGroup.appendChild(status);
     }
 
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = "🗑️";
+    deleteBtn.className = "delete-btn";
+
+    deleteBtn.addEventListener("click", () => {
+      if (confirm("Ta bort uppgift?")) {
+        myTodoList.deleteTodo(index);
+        renderTodos();
+      }
+    });
+
+    buttonGroup.appendChild(deleteBtn);
+
+    todoArticle.appendChild(buttonGroup);
+
     listContainer.appendChild(todoArticle);
-  })
+  });
 }
 
 renderTodos();

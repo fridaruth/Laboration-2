@@ -19,7 +19,7 @@ export class TodoList {
             priority: priority
         };
 
-        this.todos.push(newTodo);
+        this.todos.unshift(newTodo);
         this.saveToLocalStorage();
         return true;
     }
@@ -29,6 +29,14 @@ export class TodoList {
             this.todos[todoIndex].completed = true;
             this.saveToLocalStorage();
         }
+    }
+
+    deleteTodo(todoIndex: number): void {
+        // ta bort element
+        this.todos.splice(todoIndex, 1);
+
+        // spara uppdaterad lista
+        this.saveToLocalStorage();
     }
 
     getTodos(): Todo[] {
